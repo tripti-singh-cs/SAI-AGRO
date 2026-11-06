@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #0b1b11;
+    --bg-secondary: #07130b;
+    --card-bg: rgba(20, 50, 32, 0.65);
+    --card-border: rgba(132, 204, 22, 0.18);
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent-emerald: #10b981;
+    --accent-lime: #a3e635;
+    --panel-bg: rgba(18, 38, 25, 0.75);
+    --panel-border: rgba(74, 222, 128, 0.18);
+    --input-bg: #040e07;
+    --input-border: #13391e;
+  }
+
+  html.light,
+  [data-theme='light'] {
+    --bg-main: #f8faf6;
+    --bg-secondary: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-border: rgba(16, 185, 129, 0.22);
+    --text-primary: #0f2416;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --accent-emerald: #059669;
+    --accent-lime: #65a30d;
+    --panel-bg: rgba(255, 255, 255, 0.88);
+    --panel-border: rgba(16, 185, 129, 0.25);
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphic Cards & Panels */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-lime);
+  box-shadow: 0 14px 34px -8px rgba(16, 185, 129, 0.25);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-emerald);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+}
+
+/* Animation utilities */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+/* Light Mode Card Helper */
+html.light .glass-card {
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+html.light .glass-card:hover {
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.5);
+}
