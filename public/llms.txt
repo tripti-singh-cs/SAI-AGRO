@@ -1,0 +1,18 @@
+# SAI AGRO INDUSTRIES
+
+> Sustainable Agro & Bio-Crop Solutions for Indian Agriculture (https://saiagro.shop)
+
+## Key Pages
+- [Home](https://saiagro.shop/): Overview of bio-fertilizers, crop advisor, dosage calculator, and agronomy insights.
+- [Products](https://saiagro.shop/products): Catalog of bio-fertilizers, plant growth promoters, chelated micronutrients, bio-fungicides, and soil conditioners.
+- [Crop Solutions](https://saiagro.shop/solutions): Stage-by-stage crop nutrition schedules for Paddy, Wheat, Sugarcane, Cotton, Vegetables, and Fruits.
+- [Dosage Calculator](https://saiagro.shop/calculator): Acreage-based input dosage calculator.
+- [Agronomy Blog](https://saiagro.shop/blog): Educational farming guides and soil health articles.
+- [R&D & Quality Control](https://saiagro.shop/rnd): Microbiology laboratory and quality assurance overview.
+- [Dealership Network](https://saiagro.shop/dealers): Pan-India dealer and distributor enquiry.
+- [About Us](https://saiagro.shop/about): Company profile, vision, and mission.
+- [Contact Us](https://saiagro.shop/contact): Direct product and agronomy support enquiries.
+
+## Machine-Readable Endpoints
+- Sitemap: https://saiagro.shop/sitemap.xml
+- Robots: https://saiagro.shop/robots.txt

@@ -261,11 +261,11 @@ export default function CropAdvisor() {
 
               {/* Stage Name & Formulation Box */}
               <div className="space-y-3 flex-grow">
-                <h4 className={`text-base sm:text-lg font-black tracking-tight ${
+                <h3 className={`text-base sm:text-lg font-black tracking-tight ${
                   isLight ? 'text-slate-900' : 'text-white'
                 }`}>
                   {isHindi ? stg.stage.hi : stg.stage.en}
-                </h4>
+                </h3>
 
                 <div className={`p-3.5 rounded-2xl border space-y-1.5 ${
                   isLight 
@@ -338,11 +338,11 @@ export default function CropAdvisor() {
               <PhoneCall className="w-6 h-6" />
             </div>
             <div>
-              <h4 className={`text-base sm:text-lg font-black ${
+              <h3 className={`text-base sm:text-lg font-black ${
                 isLight ? 'text-slate-900' : 'text-white'
               }`}>
                 {isHindi ? 'क्या आप अपनी फसल के लिए निःशुल्क कृषि परामर्श चाहते हैं?' : 'Need Free Technical Agronomy Support for Your Land?'}
-              </h4>
+              </h3>
               <p className={`text-xs sm:text-sm mt-0.5 ${
                 isLight ? 'text-slate-600' : 'text-slate-300'
               }`}>

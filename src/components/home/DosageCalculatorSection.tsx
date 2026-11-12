@@ -103,12 +103,13 @@ export default function DosageCalculatorSection() {
             {/* Input Column */}
             <div className="space-y-6">
               <div>
-                <label className={`block text-sm font-black mb-2 ${
+                <label htmlFor="calc-formulation" className={`block text-sm font-black mb-2 ${
                   isLight ? 'text-slate-800' : 'text-white'
                 }`}>
                   1. {isHindi ? 'उत्पाद का चयन करें' : 'Select Formulation'}
                 </label>
                 <select
+                  id="calc-formulation"
                   value={selectedProductId}
                   onChange={(e) => setSelectedProductId(e.target.value)}
                   className={`w-full px-4 py-3.5 rounded-2xl border font-bold text-sm focus:outline-none transition shadow-sm ${
@@ -127,7 +128,7 @@ export default function DosageCalculatorSection() {
 
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className={`text-sm font-black ${
+                  <label htmlFor="calc-acreage" className={`text-sm font-black ${
                     isLight ? 'text-slate-800' : 'text-white'
                   }`}>
                     2. {t('landAreaLabel')}
@@ -142,6 +143,7 @@ export default function DosageCalculatorSection() {
                 </div>
                 
                 <input
+                  id="calc-acreage"
                   type="range"
                   min={1}
                   max={50}
@@ -151,7 +153,9 @@ export default function DosageCalculatorSection() {
                   className="w-full h-3 bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-lime-400"
                 />
                 
-                <div className="flex justify-between text-xs font-bold text-slate-400 mt-1.5">
+                <div className={`flex justify-between text-xs font-bold mt-1.5 ${
+                  isLight ? 'text-slate-600' : 'text-slate-300'
+                }`}>
                   <span>1 {isHindi ? 'एकड़' : 'Acre'}</span>
                   <span>10 {isHindi ? 'एकड़' : 'Acres'}</span>
                   <span>25 {isHindi ? 'एकड़' : 'Acres'}</span>
@@ -193,9 +197,9 @@ export default function DosageCalculatorSection() {
                 <span className="text-xs uppercase font-black tracking-wider text-lime-300">
                   {isHindi ? 'गणना सारांश' : 'Calculation Summary'}
                 </span>
-                <h4 className="text-xl font-black text-white mt-1">
+                <h3 className="text-xl font-black text-white mt-1">
                   {acreage} {isHindi ? 'एकड़ के लिए आवश्यक मात्रा' : `Required Inputs for ${acreage} Acres`}
-                </h4>
+                </h3>
               </div>
 
               <div className="space-y-4">

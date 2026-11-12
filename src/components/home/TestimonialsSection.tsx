@@ -172,14 +172,14 @@ export default function TestimonialsSection() {
                   <User className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className={`text-sm font-black flex items-center gap-1.5 ${
+                  <h3 className={`text-sm font-black flex items-center gap-1.5 ${
                     isLight ? 'text-slate-900' : 'text-white'
                   }`}>
                     {rev.farmerName} 
                     <CheckCircle2 className={`w-3.5 h-3.5 ${isLight ? 'text-emerald-600' : 'text-lime-400'}`} />
-                  </h4>
+                  </h3>
                   <p className={`text-[11px] flex items-center gap-1 font-medium ${
-                    isLight ? 'text-slate-500' : 'text-slate-400'
+                    isLight ? 'text-slate-600' : 'text-slate-300'
                   }`}>
                     <MapPin className="w-3 h-3 text-emerald-500" /> {rev.district}, {rev.state}
                   </p>

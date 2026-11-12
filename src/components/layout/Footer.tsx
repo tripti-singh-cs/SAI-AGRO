@@ -112,9 +112,9 @@ export default function Footer() {
 
           {/* Col 2: Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
+            <h2 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
               {t('quickLinks')}
-            </h4>
+            </h2>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <Link href="/about" className="hover:text-lime-400 transition flex items-center gap-1.5">
@@ -151,9 +151,9 @@ export default function Footer() {
 
           {/* Col 3: Products */}
           <div className="space-y-4">
-            <h4 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
+            <h2 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
               {isHindi ? 'उत्पाद श्रेणियां' : 'Bio-Formulations'}
-            </h4>
+            </h2>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <Link href="/products?category=Bio-Fertilizers" className="hover:text-lime-400 transition flex items-center gap-1.5">
@@ -185,9 +185,9 @@ export default function Footer() {
 
           {/* Col 4: Reach Us */}
           <div className="space-y-4">
-            <h4 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
+            <h2 className="text-xs font-extrabold text-white uppercase tracking-wider border-l-2 border-lime-400 pl-2.5">
               {t('headOffice')}
-            </h4>
+            </h2>
             <div className="space-y-3 text-xs sm:text-sm">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-lime-400 flex-shrink-0 mt-0.5" />
