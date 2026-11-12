@@ -1,11 +1,16 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Microscope, ShieldCheck, Award, CheckCircle2, Sparkles, Sprout, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'R&D & Quality Control | SAI AGRO INDUSTRIES',
-  description: 'Inside our advanced microbiology laboratory, rigorous quality control testing, and verified field trials.',
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: 'R&D & Quality Control',
+  description:
+    'Inside our advanced microbiology laboratory, rigorous quality control testing, and verified field trials at SAI AGRO INDUSTRIES.',
+  path: '/rnd',
+  keywords: ['agro R&D', 'microbiology lab', 'bio fertilizer quality control', 'field trials'],
+});
 
 export default function RndPage() {
   return (

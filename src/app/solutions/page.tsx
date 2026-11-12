@@ -1,12 +1,17 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import CropAdvisor from '@/components/home/CropAdvisor';
 import Link from 'next/link';
 import { Sprout, Award, CheckCircle2, ArrowRight } from 'lucide-react';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'Crop Solutions & Nutrition Schedules | SAI AGRO INDUSTRIES',
-  description: 'Stage-by-stage agronomic nutrient management guides for Paddy, Wheat, Sugarcane, Cotton, Vegetables, and Fruit orchards.',
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Crop Solutions & Nutrition Schedules',
+  description:
+    'Stage-by-stage agronomic nutrient management guides for Paddy, Wheat, Sugarcane, Cotton, Vegetables, and Fruit orchards.',
+  path: '/solutions',
+  keywords: ['crop nutrition schedule', 'paddy fertilizer guide', 'wheat nutrition', 'sugarcane crop care'],
+});
 
 export default function SolutionsPage() {
   return (
