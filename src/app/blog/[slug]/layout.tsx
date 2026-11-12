@@ -2,7 +2,27 @@ import type { Metadata } from 'next';
 import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import Blog from '@/models/Blog';
-import { buildPageMetadata, DEFAULT_OG_IMAGE } from '@/lib/seo';
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildPageMetadata,
+  DEFAULT_OG_IMAGE,
+} from '@/lib/seo';
+
+async function findBlog(slug: string) {
+  await connectToDatabase();
+  let blog = null;
+  if (mongoose.Types.ObjectId.isValid(slug)) {
+    blog = await Blog.findById(slug).lean();
+  }
+  if (!blog) {
+    blog = await Blog.findOne({ slug }).lean();
+  }
+  if (!blog) {
+    blog = await Blog.findOne({ slug: new RegExp(`^${slug}$`, 'i') }).lean();
+  }
+  return blog;
+}
 
 export async function generateMetadata({
   params,
@@ -12,17 +32,7 @@ export async function generateMetadata({
   const { slug } = params;
 
   try {
-    await connectToDatabase();
-    let blog = null;
-    if (mongoose.Types.ObjectId.isValid(slug)) {
-      blog = await Blog.findById(slug).lean();
-    }
-    if (!blog) {
-      blog = await Blog.findOne({ slug }).lean();
-    }
-    if (!blog) {
-      blog = await Blog.findOne({ slug: new RegExp(`^${slug}$`, 'i') }).lean();
-    }
+    const blog = await findBlog(slug);
 
     if (blog) {
       return buildPageMetadata({
@@ -47,10 +57,49 @@ export async function generateMetadata({
   });
 }
 
-export default function BlogDetailLayout({
+export default async function BlogDetailLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { slug: string };
 }) {
-  return children;
+  let jsonLd: object[] = [];
+
+  try {
+    const blog = await findBlog(params.slug);
+    if (blog) {
+      const slug = blog.slug || params.slug;
+      jsonLd = [
+        buildArticleJsonLd({
+          title: blog.title,
+          slug,
+          summary: blog.summary,
+          author: blog.author,
+          coverImage: blog.coverImage,
+          createdAt: blog.createdAt,
+          updatedAt: blog.updatedAt,
+        }),
+        buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: blog.title, path: `/blog/${slug}` },
+        ]),
+      ];
+    }
+  } catch {
+    // Skip JSON-LD if DB lookup fails
+  }
+
+  return (
+    <>
+      {jsonLd.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      {children}
+    </>
+  );
 }

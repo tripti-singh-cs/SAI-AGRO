@@ -2,7 +2,27 @@ import type { Metadata } from 'next';
 import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/mongodb';
 import Product from '@/models/Product';
-import { buildPageMetadata, DEFAULT_OG_IMAGE } from '@/lib/seo';
+import {
+  buildBreadcrumbJsonLd,
+  buildPageMetadata,
+  buildProductJsonLd,
+  DEFAULT_OG_IMAGE,
+} from '@/lib/seo';
+
+async function findProduct(id: string) {
+  await connectToDatabase();
+  let product = null;
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    product = await Product.findById(id).lean();
+  }
+  if (!product) {
+    product = await Product.findOne({ slug: id }).lean();
+  }
+  if (!product) {
+    product = await Product.findOne({ slug: new RegExp(`^${id}$`, 'i') }).lean();
+  }
+  return product;
+}
 
 export async function generateMetadata({
   params,
@@ -12,17 +32,7 @@ export async function generateMetadata({
   const { id } = params;
 
   try {
-    await connectToDatabase();
-    let product = null;
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      product = await Product.findById(id).lean();
-    }
-    if (!product) {
-      product = await Product.findOne({ slug: id }).lean();
-    }
-    if (!product) {
-      product = await Product.findOne({ slug: new RegExp(`^${id}$`, 'i') }).lean();
-    }
+    const product = await findProduct(id);
 
     if (product) {
       const description =
@@ -59,10 +69,47 @@ export async function generateMetadata({
   });
 }
 
-export default function ProductDetailLayout({
+export default async function ProductDetailLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { id: string };
 }) {
-  return children;
+  let jsonLd: object[] = [];
+
+  try {
+    const product = await findProduct(params.id);
+    if (product) {
+      const slug = product.slug || params.id;
+      jsonLd = [
+        buildProductJsonLd({
+          name: product.name,
+          slug,
+          category: product.category,
+          description: product.tagline || product.description,
+          images: product.images,
+        }),
+        buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Products', path: '/products' },
+          { name: product.name, path: `/products/${slug}` },
+        ]),
+      ];
+    }
+  } catch {
+    // Skip JSON-LD if DB lookup fails
+  }
+
+  return (
+    <>
+      {jsonLd.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      {children}
+    </>
+  );
 }

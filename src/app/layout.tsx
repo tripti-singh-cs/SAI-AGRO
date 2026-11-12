@@ -8,6 +8,7 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import {
   DEFAULT_OG_IMAGE,
   GOOGLE_SITE_VERIFICATION,
+  IS_PREVIEW_ENV,
   SITE_NAME,
   SITE_URL,
 } from '@/lib/seo';
@@ -42,11 +43,11 @@ export const metadata: Metadata = {
     google: GOOGLE_SITE_VERIFICATION,
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !IS_PREVIEW_ENV,
+    follow: !IS_PREVIEW_ENV,
     googleBot: {
-      index: true,
-      follow: true,
+      index: !IS_PREVIEW_ENV,
+      follow: !IS_PREVIEW_ENV,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
