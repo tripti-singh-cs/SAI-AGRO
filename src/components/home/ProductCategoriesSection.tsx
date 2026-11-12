@@ -183,7 +183,11 @@ export default function ProductCategoriesSection() {
                   <cat.icon className="w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  <span className={`text-[11px] font-extrabold px-2.5 py-1 rounded-lg border ${
+                    isLight
+                      ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                      : 'bg-emerald-950/90 text-lime-300 border-emerald-700'
+                  }`}>
                     {cat.tag}
                   </span>
                   <span className={`text-xs font-bold px-2.5 py-1 rounded-lg border ${

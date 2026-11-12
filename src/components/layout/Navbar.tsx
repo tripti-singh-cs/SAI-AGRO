@@ -333,7 +333,11 @@ export default function Navbar() {
                               }`}>
                                 {item.name}
                               </span>
-                              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded border ${
+                                isLight
+                                  ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                                  : 'bg-emerald-950/90 text-lime-300 border-emerald-700'
+                              }`}>
                                 {item.badge}
                               </span>
                             </div>

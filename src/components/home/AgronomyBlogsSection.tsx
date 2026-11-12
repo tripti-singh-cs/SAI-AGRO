@@ -25,7 +25,7 @@ const fallbackBlogs: BlogItem[] = [
     category: 'Bio-Fertilizer Science',
     author: 'Dr. A. Verma (Chief Agronomist)',
     readTime: '6 min read',
-    coverImage: 'https://images.unsplash.com/photo-1592417817098-8f3d6eb2251a?q=80&w=800&auto=format&fit=crop',
+    coverImage: '/images/sai-agro-banner.jpg',
     summary: 'Explore how Rhizobium and PSB bacterial cultures unlock fixed soil minerals, enrich earthworm activity, and build long-term farm resilience.'
   },
   {
