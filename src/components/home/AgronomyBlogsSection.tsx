@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BookOpen, ArrowRight, Clock, User, ChevronRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -128,10 +129,12 @@ export default function AgronomyBlogsSection() {
                 isLight ? 'bg-emerald-50' : 'bg-[#051109]'
               }`}>
                 {b.coverImage ? (
-                  <img
+                  <Image
                     src={b.coverImage}
                     alt={b.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 ) : (
                   <div className={`w-full h-full flex items-center justify-center ${

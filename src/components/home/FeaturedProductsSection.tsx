@@ -189,16 +189,12 @@ export default function FeaturedProductsSection() {
               <div className={`relative aspect-[4/3] overflow-hidden flex items-center justify-center p-6 ${
                 isLight ? 'bg-emerald-50/60' : 'bg-[#040e07]'
               }`}>
-                <img
+                <Image
                   src={prod.images && prod.images[0] ? prod.images[0] : '/images/products/sai-grow-max.jpg'}
                   alt={prod.name}
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (!target.src.includes('sai-grow-max.jpg')) {
-                      target.src = '/images/products/sai-grow-max.jpg';
-                    }
-                  }}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                 />
 
                 <div className="absolute top-4 left-4">
